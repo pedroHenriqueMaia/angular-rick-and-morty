@@ -12,24 +12,36 @@ export class CharacterComponent implements OnInit {
   constructor() { }
   
   ngOnInit(): void {
-    this.listCharacter()
+    this.listCharacter(this.page)
   }
 
-  results:any;
+  results:any = [];
+  page:number = 1 
 
-  async listCharacter() {
+  async listCharacter(pages:number) {
+    let array: any[] = [];
     const api = await axios.create({
       baseURL: "https://rickandmortyapi.com/api/",
     });
 
-   const data = await api.get("character/?page=2")
+   const data = await api.get(`character/?page=${pages}`)
       .then((response) => response.data)
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);
      });
 
-     this.results = data.results
-     console.log(this.results)
+     Promise.all([data]).then((values) => {
+      // do stuff with values here
+      array = values[0].results;
+      array.map((i) => this.results.push(i));
+      console.log(this.results)
+    });
+
+  }
+
+  onScrolledDown(): void {
+    this.page = this.page + 1;
+    this.listCharacter(this.page)
   }
 
 }
