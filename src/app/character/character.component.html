@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+      <div class="col-md-3" *ngFor="let result of results">
+        <div class="card" style="width: 15rem;">
+          <img class="card-img-top" src='{{ result.image }}' alt="Card image cap">
+          <div align="center"class="card-body">
+            <h5 class="card-title">{{ result.name }}</h5>
+            <p class="card-text">({{ result.species }})</p>
+            <p class="card-text">Location: {{ result.location.name }}</p>
+            <p class="card-footer" *ngIf="result.status == 'Alive'" style="background-color:rgba(0, 255, 0, 0.243);">{{ result.status }}</p>
+            <p class="card-footer" *ngIf="result.status == 'Dead'" style="background-color:rgba(255, 0, 0, 0.243);">{{ result.status }}</p>
+            <p class="card-footer" *ngIf="result.status == 'unknown'" style="background-color:rgba(255, 255, 0, 0.243);">{{ result.status }}</p>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
