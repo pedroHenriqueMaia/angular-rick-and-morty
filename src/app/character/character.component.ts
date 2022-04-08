@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import axios from 'axios';
-
+import { RequestService } from '../service/request';
 
 @Component({
   selector: 'app-character',
@@ -9,7 +8,7 @@ import axios from 'axios';
 })
 export class CharacterComponent implements OnInit {
   
-  constructor() { }
+  constructor(private requestService: RequestService) { }
   
   ngOnInit(): void {
     this.listCharacter(this.page)
@@ -19,19 +18,11 @@ export class CharacterComponent implements OnInit {
   page:number = 1 
 
   async listCharacter(pages:number) {
-    let array: any[] = [];
-    const api = await axios.create({
-      baseURL: "https://rickandmortyapi.com/api/",
-    });
+     let array: any[] = [];
 
-   const data = await api.get(`character/?page=${pages}`)
-      .then((response) => response.data)
-      .catch((err) => {
-        console.error("ops! ocorreu um erro" + err);
-     });
+     const data = this.requestService.RequestCharacteries(pages); 
 
      Promise.all([data]).then((values) => {
-      // do stuff with values here
       array = values[0].results;
       array.map((i) => this.results.push(i));
       console.log(this.results)

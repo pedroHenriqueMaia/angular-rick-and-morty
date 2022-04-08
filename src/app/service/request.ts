@@ -79,6 +79,30 @@ export class RequestService {
       return data;
   }
 
+  async RequestCharacteries(pages?:number): Promise<any>{
+    let data: Promise<any>;
+
+    const api = axios.create({
+      baseURL: "https://rickandmortyapi.com/api/",
+    });
+
+    if(pages != null){
+      data = await api.get(`character/?page=${pages}`)
+      .then((response) => response.data)
+      .catch((err) => {
+        console.error("ops! ocorreu um erro" + err);
+     });
+    }else{
+      data = await api.get(`character`)
+      .then((response) => response.data)
+      .catch((err) => {
+        console.error("ops! ocorreu um erro" + err);
+     });
+    }
+
+    return data;
+  }
+
   async RequestEpisode(id: number): Promise<EpisodeDto>{
     const api = axios.create({
       baseURL: "https://rickandmortyapi.com/api/",
