@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { RequestService } from '../service/request';
 
 @Component({
@@ -8,12 +9,16 @@ import { RequestService } from '../service/request';
 })
 export class CharacterComponent implements OnInit {
   
-  constructor(private requestService: RequestService) { }
+  constructor(
+    @Inject(DOCUMENT) private document:Document,
+    private requestService: RequestService
+    ) { }
   
   ngOnInit(): void {
     this.listCharacter(this.page)
   }
 
+  showButton = false;
   results:any = [];
   page:number = 1 
 
@@ -33,6 +38,17 @@ export class CharacterComponent implements OnInit {
   onScrolledDown(): void {
     this.page = this.page + 1;
     this.listCharacter(this.page)
+  }
+
+  @HostListener('window:scroll')
+  onWindowScroll():void {
+    const yOffSet = window.pageYOffset;
+    const scrollTop = this.document.documentElement.scrollTop;
+    this.showButton = (yOffSet || scrollTop) > 500;
+  }
+
+  onScrollTop(): void {
+    this.document.documentElement.scrollTop = 0;
   }
 
 }

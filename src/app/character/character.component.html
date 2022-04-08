@@ -17,5 +17,6 @@
         </div></a>
       </div>
   </div>
+  <button *ngIf="showButton" (click)="onScrollTop()" id="button">UP!</button>
 </div>
 <section infiniteScroll (scrolled)="onScrolledDown()"></section>

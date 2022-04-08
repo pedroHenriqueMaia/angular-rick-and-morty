@@ -16,3 +16,18 @@ a {
     text-decoration: none;
     color: white;
 }
+
+#button{
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 3;
+    padding: 1rem;
+    background-color: rgb(71, 71, 71);
+    border: 2px solid rgb(20, 20, 20);
+    border-radius: 30px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
