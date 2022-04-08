@@ -1,0 +1,84 @@
+<div class="container">
+  <div id="card">
+      <div class="row">
+      <div class="col-md-6">
+        <img width="350px" src='{{ result.image }}' class="rounded float-left" alt="...">
+      </div>
+      <div class="col-md-6">
+        <h1>{{ result.name }} <span> ({{ result.species }}) </span></h1>
+        <hr>
+        <br>
+        <div align="left">
+          <h4>Gender: {{ result.gender }}</h4>
+          <h4>Type: {{ result.type }}</h4>
+          <h4>Origin: {{ result.origin.name }}</h4>
+          <h4>Location: {{ result.location.name }}</h4>
+          <h4 class="card-footer" *ngIf="result.status == 'Alive'" style="background-color:rgb(11, 213, 11);">{{ result.status }}</h4>
+          <h4 class="card-footer" *ngIf="result.status == 'Dead'" style="background-color:rgb(209, 0, 0);">{{ result.status }}</h4>
+          <h4 class="card-footer" *ngIf="result.status == 'unknown'" style="background-color:rgb(220, 220, 0);">{{ result.status }}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div id="accordion">
+        <div id="cards" class="card">
+          <div align="center" class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                Episodes
+              </button>
+            </h5>
+          </div>
+      
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+              <div align="center">
+                <div class="row">
+                  <div class="col-md-6" *ngFor="let episode of episodes">
+                    <h4>{{ episode.name }} - {{ episode.episode }}</h4>
+                    <h6>({{ episode.air_date }})</h6>
+                    <hr>
+                  </div>
+                </div>
+                <hr>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+   
+   <div class="row">
+    <div class="col-md-12">
+      <div id="accordion2">
+        <div id="cards" class="card">
+          <div align="center" class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn" data-toggle="collapse" data-target="#collapseOne2" aria-expanded="false" aria-controls="collapseOne2">
+                Location
+              </button>
+            </h5>
+          </div>
+      
+          <div id="collapseOne2" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion2">
+            <div class="card-body">
+              <div align="center">
+                <h3>{{ result.location.name }}</h3>
+                <p>All characters residing in that location...</p>
+                <div class="row">
+                  <div id="box" class="col-md-3" *ngFor="let character of characteriesByLocation">
+                    <a href="/character/{{ character.id }}"><img width="80%" class="rounded center" src='{{ character.image }}'>
+                    <h4>{{ character.name }}</h4></a>
+                  </div>
+                </div>
+                <hr>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>

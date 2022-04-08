@@ -1,0 +1,46 @@
+.row{
+    margin-top: 55px;
+}
+
+a {
+    text-decoration: none;
+    color:black
+}
+
+#box{
+    background-color: white;
+    color: rgb(20, 20, 20);
+    border-radius: 10px;
+    box-shadow: 5px 3px 25px #151515;
+    margin: 40px;
+}
+
+
+#box:hover{
+    box-shadow: 3px 3px 10px #151515;
+    transition: all 0.3s;
+}
+
+#card{
+    color: white;
+    border-radius: 15px;
+    margin: 15px;
+    border: 5px solid rgb(20, 20, 20);
+    background-color: rgb(71, 71, 71);
+    border-radius: 10px;
+    box-shadow: 5px 3px 25px rgb(98, 98, 98);
+    margin: 40px;
+}
+
+#card img {
+    margin-top: -45px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+}
+
+#cards {
+    color: white;
+    background-color: rgb(71, 71, 71);
+    box-shadow: 5px 3px 15px rgb(98, 98, 98);
+
+}

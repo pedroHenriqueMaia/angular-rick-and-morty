@@ -5,18 +5,22 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CharacterComponent } from './character/character.component';
+import { CharacterPageComponent } from './character-page/character-page.component';
+import { RequestService } from './service/request';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CharacterComponent
+    CharacterComponent,
+    CharacterPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    
   ],
-  providers: [],
+  providers: [RequestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
