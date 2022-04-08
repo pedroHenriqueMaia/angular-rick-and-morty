@@ -27,7 +27,7 @@ export class CharacterPageComponent implements OnInit {
     this.listCharacter(this.characterId)
   }
 
-  async listCharacter(id:number) {
+  async listCharacter(id:number): Promise<void>{
     const dataCharacter: CharacterDto = await this.requestService.RequestCharacter(id)
     this.result = dataCharacter;
 
@@ -36,14 +36,7 @@ export class CharacterPageComponent implements OnInit {
 
     const locationUrl = this.result.location.url
     const location:LocationDto = await this.requestService.RequestLocation(locationUrl)
-    this.characteriesByLocation = await this.requestService.RequestMultiplesCharacteries(location.residents)
-
-    console.log(this.result)
-    
-    
-    
-    
-    
+    this.characteriesByLocation = await this.requestService.RequestMultiplesCharacteries(location.residents)   
   }
 
 }

@@ -1,0 +1,27 @@
+<div class="container">
+     <div class="row">
+      <div class="col-md-12">
+        <div id="accordion2">
+          <div id="cards" class="card">
+            <div align="center" class="card-header" id="headingOne">
+              <h3 class="mb-0">{{ result.name }} - {{ result.episode }}</h3>
+            </div>
+            <div class="card-body">
+            <div align="center">
+                <h6>Characters in this episode: {{ result.characters.length }}</h6>
+                <h6>({{ result.air_date }})</h6>
+                <hr>
+                <div class="row">
+                  <div id="box" class="col-md-3" *ngFor="let character of characteries">
+                    <a href="/character/{{ character.id }}"><img width="80%" class="rounded center" src='{{ character.image }}'>
+                    <h4>{{ character.name }}</h4></a>
+                  </div>
+                </div>
+                <hr>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     </div>
+  

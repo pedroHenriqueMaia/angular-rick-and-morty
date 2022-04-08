@@ -10,9 +10,10 @@
         <br>
         <div align="left">
           <h4>Gender: {{ result.gender }}</h4>
-          <h4>Type: {{ result.type }}</h4>
+          <h4 *ngIf="result.type">Type: {{ result.type }}</h4>
           <h4>Origin: {{ result.origin.name }}</h4>
           <h4>Location: {{ result.location.name }}</h4>
+          <h4>Episodes: {{ result.episode.length }}</h4>
           <h4 class="card-footer" *ngIf="result.status == 'Alive'" style="background-color:rgb(11, 213, 11);">{{ result.status }}</h4>
           <h4 class="card-footer" *ngIf="result.status == 'Dead'" style="background-color:rgb(209, 0, 0);">{{ result.status }}</h4>
           <h4 class="card-footer" *ngIf="result.status == 'unknown'" style="background-color:rgb(220, 220, 0);">{{ result.status }}</h4>
@@ -36,10 +37,13 @@
             <div class="card-body">
               <div align="center">
                 <div class="row">
-                  <div class="col-md-6" *ngFor="let episode of episodes">
-                    <h4>{{ episode.name }} - {{ episode.episode }}</h4>
-                    <h6>({{ episode.air_date }})</h6>
-                    <hr>
+                  <div id="box" class="col-md-3" *ngFor="let episode of episodes">
+                    <br>
+                    <a href="/episode/{{ episode.id }}"><h4>{{ episode.name }} - {{ episode.episode }}</h4>
+                      <h6>Characters in this episode: {{ episode.characters.length }}</h6>
+                      <h6>({{ episode.air_date }})</h6>
+                    </a>
+                    <br>
                   </div>
                 </div>
                 <hr>

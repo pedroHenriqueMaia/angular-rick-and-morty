@@ -79,6 +79,20 @@ export class RequestService {
       return data;
   }
 
+  async RequestEpisode(id: number): Promise<EpisodeDto>{
+    const api = axios.create({
+      baseURL: "https://rickandmortyapi.com/api/",
+    });
+
+      const data:EpisodeDto = await api.get(`episode/${id}`)
+        .then((response) => response.data)
+        .catch((err) => {
+          console.error("ops! ocorreu um erro" + err);
+        });
+
+      return data;
+  }
+
   async RequestLocation(url: string): Promise<LocationDto>{
     const api = axios.create({
       baseURL: url,

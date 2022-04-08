@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { CharacterComponent } from './character/character.component';
 import { CharacterPageComponent } from './character-page/character-page.component';
 import { RequestService } from './service/request';
+import { EpisodeComponent } from './episode/episode.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CharacterComponent,
-    CharacterPageComponent
+    CharacterPageComponent,
+    EpisodeComponent
   ],
   imports: [
     BrowserModule,
