@@ -8,13 +8,15 @@ import { CharacterComponent } from './character/character.component';
 import { CharacterPageComponent } from './character-page/character-page.component';
 import { RequestService } from './service/request';
 import { EpisodeComponent } from './episode/episode.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CharacterComponent,
     CharacterPageComponent,
-    EpisodeComponent
+    EpisodeComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

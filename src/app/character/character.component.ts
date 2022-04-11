@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, HostListener, Inject, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, Input, OnInit } from '@angular/core';
 import { RequestService } from '../service/request';
 
 @Component({
@@ -18,14 +18,27 @@ export class CharacterComponent implements OnInit {
     this.listCharacter(this.page)
   }
 
+  searchValue(e:any): void{
+    this.results = []
+    this.searchCharatcer = e.search
+    this.listCharacter(this.page, this.searchCharatcer)
+  }
+
   showButton = false;
   results:any = [];
   page:number = 1 
+  searchCharatcer!: string;
 
-  async listCharacter(pages:number) {
+    listCharacter(pages:number, character?:string): void {
      let array: any[] = [];
+     let data;
 
-     const data = this.requestService.RequestCharacteries(pages); 
+     if(character != null){
+      data = this.requestService.RequestCharacteries(pages, character); 
+     }else{
+      data = this.requestService.RequestCharacteries(pages); 
+    }
+
 
      Promise.all([data]).then((values) => {
       array = values[0].results;
@@ -37,7 +50,11 @@ export class CharacterComponent implements OnInit {
 
   onScrolledDown(): void {
     this.page = this.page + 1;
-    this.listCharacter(this.page)
+    if(this.searchCharatcer != null){
+      this.listCharacter(this.page, this.searchCharatcer)
+    }else{
+      this.listCharacter(this.page)
+    }
   }
 
   @HostListener('window:scroll')

@@ -5,7 +5,7 @@ import { LocationDto } from './dto/location.dto';
 
 export class RequestService {
  
-  characterId: number | any;
+  characterId!: number;
   result: any;
 
   constructor() {
@@ -79,25 +79,28 @@ export class RequestService {
       return data;
   }
 
-  async RequestCharacteries(pages?:number): Promise<any>{
-    let data: Promise<any>;
+  async RequestCharacteries(pages?:number, character?:string): Promise<any>{
+    let data!: Promise<any>;
 
     const api = axios.create({
       baseURL: "https://rickandmortyapi.com/api/",
     });
 
     if(pages != null){
-      data = await api.get(`character/?page=${pages}`)
-      .then((response) => response.data)
-      .catch((err) => {
-        console.error("ops! ocorreu um erro" + err);
-     });
-    }else{
-      data = await api.get(`character`)
-      .then((response) => response.data)
-      .catch((err) => {
-        console.error("ops! ocorreu um erro" + err);
-     });
+      console.log(pages, character)
+      if(character != null){
+        data = await api.get(`character/?page=${pages}&name=${character}`)
+        .then((response) => response.data)
+        .catch((err) => {
+          console.error("ops! ocorreu um erro" + err);
+       });
+      }else{
+        data = await api.get(`character`)
+        .then((response) => response.data)
+        .catch((err) => {
+          console.error("ops! ocorreu um erro" + err);
+       });
+      }
     }
 
     return data;
