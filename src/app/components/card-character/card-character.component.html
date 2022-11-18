@@ -1,0 +1,13 @@
+<a href="character/{{ result.id }}">
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src='{{ result.image }}' alt="Card image cap">
+    <div align="center"class="card-body">
+        <h5 class="card-title">{{ result.name }}</h5>
+        <p class="card-text">({{ result.species }})</p>
+        <hr>
+        <p class="card-text">Location: {{ result.location.name }}</p>
+        <p class="card-text">episodes: {{ result.episode.length }}</p>
+        <p class="card-footer" [ngStyle]="verifyStatus(result.status)">{{ result.status }}</p>
+    </div>
+  </div>
+</a>

@@ -44,7 +44,6 @@ export class CharacterComponent implements OnInit {
      Promise.all([data]).then((values) => {
       array = values[0].results;
       array.map((i) => this.results.push(i));
-      console.log(this.results)
     });
 
   }

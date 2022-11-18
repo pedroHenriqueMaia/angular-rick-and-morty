@@ -8,6 +8,8 @@ import { EpisodeComponent } from './pages/episode/episode.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CharacterComponent } from './pages/character/character.component';
 import { CharacterPageComponent } from './pages/character-page/character-page.component';
+import { CardCharacterComponent } from './components/card-character/card-character.component';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { CharacterPageComponent } from './pages/character-page/character-page.co
     CharacterComponent,
     CharacterPageComponent,
     EpisodeComponent,
-    NavbarComponent
+    NavbarComponent,
+    CardCharacterComponent
   ],
   imports: [
     BrowserModule,

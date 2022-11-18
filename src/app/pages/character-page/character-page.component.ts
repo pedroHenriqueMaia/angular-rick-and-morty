@@ -26,9 +26,21 @@ export class CharacterPageComponent implements OnInit {
 
   async listCharacter(id:number): Promise<void>{
     this.result = await this.requestService.RequestCharacter(id);
-    this.episodes = await this.requestService.RequestMultiplesEpisodes(this.result.episode)
-    const location = await this.requestService.RequestLocation(this.result.location.url)
-    this.characteriesByLocation = await this.requestService.RequestMultiplesCharacteries(location.residents)   
+    this.episodes = await this.requestService.RequestMultiplesEpisodes(this.result.episode);
+    const location = await this.requestService.RequestLocation(this.result.location.url);
+    this.characteriesByLocation = await this.requestService.RequestMultiplesCharacteries(location.residents);
   }
+
+  verifyStatus(status: string) {
+    switch(status) {
+      case 'Alive':
+        return {'background-color': '#0bd50b'};
+      case 'Dead':
+        return {'background-color': '#d10000'};
+      case 'Unknow':
+        return {'background-color': '#dcdc00'};
+      default: return {'background-color': '#dcdc00'};
+    }
+   }
 
 }

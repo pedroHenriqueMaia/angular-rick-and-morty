@@ -8,11 +8,10 @@ a {
 }
 
 #box{
-    background-color: rgb(20, 20, 20);
     color: white;
     border-radius: 10px;
-    box-shadow: 5px 3px 25px #151515;
-    margin: 40px;
+    box-shadow: 1px 1px 25px #000000;
+    margin: 5em;
 }
 
 

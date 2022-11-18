@@ -15,9 +15,7 @@
           <h4>Origin: {{ result.origin.name }}</h4>
           <h4>Location: {{ result.location.name }}</h4>
           <h4>Episodes: {{ result.episode.length }}</h4>
-          <h4 class="card-footer" *ngIf="result.status == 'Alive'" style="background-color:rgb(11, 213, 11);">{{ result.status }}</h4>
-          <h4 class="card-footer" *ngIf="result.status == 'Dead'" style="background-color:rgb(209, 0, 0);">{{ result.status }}</h4>
-          <h4 class="card-footer" *ngIf="result.status == 'unknown'" style="background-color:rgb(220, 220, 0);">{{ result.status }}</h4>
+          <h4 class="card-footer" [ngStyle]="verifyStatus(result.status)" >{{ result.status }}</h4>
         </div>
       </div>
     </div>
@@ -38,7 +36,7 @@
             <div class="card-body">
               <div align="center">
                 <div class="row">
-                  <div id="box" class="col-md-3" *ngFor="let episode of episodes">
+                  <div id="box" class="col-md-4" *ngFor="let episode of episodes">
                     <br>
                     <a href="/episode/{{ episode.id }}"><h4>{{ episode.name }} - {{ episode.episode }}</h4>
                       <h6>Characters in this episode: {{ episode.characters.length }}</h6>
@@ -74,9 +72,8 @@
                 <h3>{{ result.location.name }}</h3>
                 <p>All characters residing in that location...</p>
                 <div class="row">
-                  <div id="box" class="col-md-3" *ngFor="let character of characteriesByLocation">
-                    <a href="/character/{{ character.id }}"><img width="80%" class="rounded center" src='{{ character.image }}'>
-                    <h4>{{ character.name }}</h4></a>
+                  <div id="box" class="col-md-4" *ngFor="let character of characteriesByLocation">
+                    <app-card-character [result]="character"></app-card-character>
                   </div>
                 </div>
                 <hr>
