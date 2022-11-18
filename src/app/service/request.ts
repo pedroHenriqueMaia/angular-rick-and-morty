@@ -1,25 +1,24 @@
 import axios from 'axios';
-import { CharacterDto } from './dto/character.dto';
-import { EpisodeDto } from './dto/episode.dto';
-import { LocationDto } from './dto/location.dto';
+import { ICharacter } from './models/character';
+import { IEpisode } from './models/episode';
+import { ILocation } from './models/location';
 
 export class RequestService {
- 
   characterId!: number;
   result: any;
+  api = axios.create({
+    baseURL: "https://rickandmortyapi.com/api/",
+  });
 
-  constructor() {
-  }
-
-  async RequestMultiplesCharacteries(urls: string[]): Promise<CharacterDto[]>{
-    let data: Promise<CharacterDto[]>
+  async RequestMultiplesCharacteries(urls: string[]): Promise<ICharacter[]>{
+    let data: Promise<ICharacter[]>
     let array:any[] = []
     let paramLength = urls.length;
-    
     let result = urls.map(async (i) => {
-      const api = axios.create({
-        baseURL: i
-      });
+    const api = axios.create({
+      baseURL: i
+    });
+
       if(paramLength != 0){
         paramLength = paramLength - 1;
         data = await api.get(`/`)
@@ -27,22 +26,17 @@ export class RequestService {
           .catch((err) => {
             console.error("ops! ocorreu um erro" + err);
           });
-
-        array.push(data)
+          array.push(data)
       }
-      
       return array;
       })
-      let promiseResolved: CharacterDto[]
-      return promiseResolved = await Promise.all([result[0]]).then((res) => res[0])
+      return await Promise.all([result[0]]).then((res) => res[0])
     }
 
-  async RequestMultiplesEpisodes(urls: string[]): Promise<EpisodeDto[]>{
-    
-    let data: Promise<EpisodeDto[]>
+  async RequestMultiplesEpisodes(urls: string[]): Promise<IEpisode[]>{
+    let data: Promise<IEpisode[]>
     let array:any[] = []
     let paramLength = urls.length;
-    
     let result = urls.map(async (i) => {
       const api = axios.create({
         baseURL: i
@@ -60,42 +54,29 @@ export class RequestService {
       
       return array;
       })
-      let promiseResolved: EpisodeDto[]
-      return promiseResolved = await Promise.all([result[0]]).then((res) => res[0])
+      return await Promise.all([result[0]]).then((res) => res[0])
       
   }
 
-  async RequestCharacter(id: number): Promise<CharacterDto>{
-    const api = axios.create({
-      baseURL: "https://rickandmortyapi.com/api/",
-    });
-
-      const data:CharacterDto = await api.get(`character/${id}`)
-        .then((response) => response.data)
-        .catch((err) => {
-          console.error("ops! ocorreu um erro" + err);
-        });
-
-      return data;
+  async RequestCharacter(id: number): Promise<ICharacter>{
+    return await this.api.get(`character/${id}`)
+      .then((response) => response.data)
+      .catch((err) => {
+        console.error("ops! ocorreu um erro" + err);
+      });
   }
 
   async RequestCharacteries(pages?:number, character?:string): Promise<any>{
     let data!: Promise<any>;
-
-    const api = axios.create({
-      baseURL: "https://rickandmortyapi.com/api/",
-    });
-
     if(pages != null){
-      console.log(pages, character)
       if(character != null){
-        data = await api.get(`character/?page=${pages}&name=${character}`)
+        data = await this.api.get(`character/?page=${pages}&name=${character}`)
         .then((response) => response.data)
         .catch((err) => {
           console.error("ops! ocorreu um erro" + err);
        });
       }else{
-        data = await api.get(`character`)
+        data = await this.api.get(`character`)
         .then((response) => response.data)
         .catch((err) => {
           console.error("ops! ocorreu um erro" + err);
@@ -106,33 +87,23 @@ export class RequestService {
     return data;
   }
 
-  async RequestEpisode(id: number): Promise<EpisodeDto>{
-    const api = axios.create({
-      baseURL: "https://rickandmortyapi.com/api/",
-    });
-
-      const data:EpisodeDto = await api.get(`episode/${id}`)
-        .then((response) => response.data)
-        .catch((err) => {
-          console.error("ops! ocorreu um erro" + err);
-        });
-
-      return data;
+  async RequestEpisode(id: number): Promise<IEpisode>{
+    return await this.api.get(`episode/${id}`)
+      .then((response) => response.data)
+      .catch((err) => {
+        console.error("ops! ocorreu um erro" + err);
+      });
   }
 
-  async RequestLocation(url: string): Promise<LocationDto>{
+  async RequestLocation(url: string): Promise<ILocation>{
     const api = axios.create({
       baseURL: url,
     });
 
-      const data:LocationDto = await api.get(`/`)
+      return await api.get(`/`)
         .then((response) => response.data)
         .catch((err) => {
           console.error("ops! ocorreu um erro" + err);
         });
-
-      return data;
   }
-
-
 }

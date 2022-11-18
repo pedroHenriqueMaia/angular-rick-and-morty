@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, HostListener, Inject, Input, OnInit } from '@angular/core';
-import { RequestService } from '../service/request';
+import { RequestService } from 'src/app/service/request';
+;
 
 @Component({
   selector: 'app-character',

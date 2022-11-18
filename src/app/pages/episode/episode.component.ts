@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CharacterDto } from '../service/dto/character.dto';
-import { EpisodeDto } from '../service/dto/episode.dto';
-import { RequestService } from '../service/request';
+import { ICharacter } from 'src/app/service/models/character';
+import { IEpisode } from 'src/app/service/models/episode';
+import { RequestService } from '../../service/request';
 
 @Component({
   selector: 'app-episode',
@@ -12,8 +12,8 @@ import { RequestService } from '../service/request';
 export class EpisodeComponent implements OnInit {
 
   episodeId!: number;
-  result!: EpisodeDto;
-  characteries!: CharacterDto[];
+  result!: IEpisode;
+  characteries!: ICharacter[];
 
   constructor(private route: ActivatedRoute, private requestService: RequestService) {
     this.route.params.subscribe(params => this.episodeId = params['id']);
@@ -24,12 +24,8 @@ export class EpisodeComponent implements OnInit {
   }
 
   async listEpisode(id:number): Promise<void>{
-
-    const dataEpisode: EpisodeDto = await this.requestService.RequestEpisode(id)
-    this.result = dataEpisode;
-
-    const multiplesCharacter:string[] = this.result.characters;
-    this.characteries = await this.requestService.RequestMultiplesCharacteries(multiplesCharacter)
+    this.result = await this.requestService.RequestEpisode(id);
+    this.characteries = await this.requestService.RequestMultiplesCharacteries(this.result.characters);
   }
 
 }

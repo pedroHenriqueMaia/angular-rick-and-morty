@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CharacterComponent } from './character/character.component';
-import { CharacterPageComponent } from './character-page/character-page.component';
 import { RequestService } from './service/request';
-import { EpisodeComponent } from './episode/episode.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { EpisodeComponent } from './pages/episode/episode.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { CharacterComponent } from './pages/character/character.component';
+import { CharacterPageComponent } from './pages/character-page/character-page.component';
 
 @NgModule({
   declarations: [
