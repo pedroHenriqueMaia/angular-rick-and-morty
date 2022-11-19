@@ -22,4 +22,10 @@ describe('NavbarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
+  it('searchInputChanges', () => {
+    spyOn(component.searchValue, 'emit')
+    component.searchInputChanges('rick');
+    expect(component.searchValue.emit).toHaveBeenCalledTimes(1);
+  });
 });

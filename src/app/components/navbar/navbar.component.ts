@@ -15,8 +15,8 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  searchInputChanges(e: any){
-    this.searchValue.emit({'search': e.target.value})
+  searchInputChanges(param: any){
+    this.searchValue.emit({'search': param})
   }
 
 }

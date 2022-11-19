@@ -14,6 +14,11 @@ export class CharacterComponent implements OnInit {
     @Inject(DOCUMENT) private document:Document,
     private requestService: RequestService
     ) { }
+    
+  showButton = false;
+  results:any = [];
+  page:number = 1 
+  searchCharatcer!: string;
   
   ngOnInit(): void {
     this.listCharacter(this.page)
@@ -25,10 +30,6 @@ export class CharacterComponent implements OnInit {
     this.listCharacter(this.page, this.searchCharatcer)
   }
 
-  showButton = false;
-  results:any = [];
-  page:number = 1 
-  searchCharatcer!: string;
 
     listCharacter(pages:number, character?:string): void {
      let array: any[] = [];
